@@ -63,14 +63,20 @@ const outputs: Array<string> = [
   "onupdatefiles",
 ];
 
+
 // Component outline
 @Component({
-  selector: "file-pond",
+  selector: "file-pond-ivy",
   encapsulation: ViewEncapsulation.None,
-  templateUrl: "./filepond.component.html",
-  styleUrls: ["./filepond.component.css"],
+  template: `
+    <div class="filepond--wrapper">
+      <input type="file"/>
+    </div>
+  `,
+  styles: [
+  ]
 })
-export class FilePondComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class NgxFilepondIvyComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input()
   options: FilePondOptions = {};
 
@@ -97,7 +103,7 @@ export class FilePondComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private root: ElementRef;
   private zone: NgZone;
-  private pond: FilePond;
+  private pond!: FilePond;
   private handleEvent: Function = null;
 
   constructor(root: ElementRef, zone: NgZone) {
@@ -205,3 +211,4 @@ export class FilePondComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.pond.destroy();
   }
 }
+
